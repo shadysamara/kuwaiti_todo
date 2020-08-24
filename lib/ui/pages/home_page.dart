@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kuwaiti_flutter/models/task.dart';
 import 'package:kuwaiti_flutter/repositories/repository.dart';
+import 'package:kuwaiti_flutter/ui/pages/add_task_page.dart';
 import 'package:kuwaiti_flutter/ui/pages/all_tasks.dart';
 import 'package:kuwaiti_flutter/ui/pages/completed_tasks.dart';
 import 'package:kuwaiti_flutter/ui/pages/in_completed_tasks.dart';
@@ -22,6 +23,13 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       int taskIndex = allTasks.indexOf(task);
       allTasks.removeAt(taskIndex);
+    });
+  }
+
+  addTask(Task task) {
+    // Task task = Task(taskTitle: this.taskTitle, isComplete: this.isComplete);
+    setState(() {
+      allTasks.add(task);
     });
   }
 
@@ -63,6 +71,13 @@ class _HomePageState extends State<HomePage> {
                 changeTaskComplete,
                 removeTask)
           ]),
+          floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (x) {
+                  return AddTaskPage(addTask);
+                }));
+              }),
         ));
   }
 }

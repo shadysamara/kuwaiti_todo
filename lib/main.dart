@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:kuwaiti_flutter/ui/pages/home_page.dart';
 
 void main() {
   runApp(ShadyClass());
 }
 
-class ShadyClass extends StatelessWidget {
+class ShadyClass extends StatefulWidget {
+  @override
+  _ShadyClassState createState() => _ShadyClassState();
+}
+
+class _ShadyClassState extends State<ShadyClass> {
+  Future<void> secureScreen() async {
+    await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    secureScreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
